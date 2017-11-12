@@ -27,7 +27,7 @@
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Parallax Demo 1.0.7</p>
+<p class="lw">Parallax Demo 1.0.8</p>
   
 <div class="garden">
   <canvas id="myCanvas" width="980" height="500" style="border:1px solid #000000;"></canvas>    
@@ -81,7 +81,7 @@ function handleOrientation(event) {
   var y = event.gamma; // In degree in the range [-90,90]
   var p = 0;
   
-  if(z > 178 && z < 335) {
+  if(z < 117 || z > 303) {
     p = y;
   } else {
     p = x * 10;
