@@ -3,8 +3,8 @@
 <head><style type="text/css">
 .garden {
   position: relative;
-  width : 1000px;
-  height: 1000px;
+  width : 980px;
+  height: 500px;
   border: 5px solid #CCC;
   border-radius: 10px;
 }
@@ -27,10 +27,10 @@
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Parallax Demo 1.0.6</p>
+<p class="lw">Parallax Demo 1.0.7</p>
   
 <div class="garden">
-  <canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #000000;"></canvas>    
+  <canvas id="myCanvas" width="980" height="500" style="border:1px solid #000000;"></canvas>    
   <div class="ball" style="top: 230px; left: 80px;"></div>
 </div>
 
@@ -79,7 +79,13 @@ function handleOrientation(event) {
   var z = event.alpha; // In degree in the range [-180,180]
   var x = event.beta;  // In degree in the range [-180,180]
   var y = event.gamma; // In degree in the range [-90,90]
-
+  var p = 0;
+  
+  if(z > 178 && z < 335) {
+    p = y;
+  } else {
+    p = x * 10;
+  }
   
   output.innerHTML  = "alpha: " + z + "\n";
   output.innerHTML += "beta : " + x + "\n";
@@ -90,9 +96,9 @@ function handleOrientation(event) {
   if (x >  90) { x =  90;}
   if (x < -90) { x = -90;}
 
-  var x1 = 500-155 + y * (c1_slider.value / 10);
-  var x2 = 500-155 + y * (c2_slider.value / 10);
-  var x3 = 500-155 + y * (c3_slider.value / 10);
+  var x1 = 490-155 + p * (c1_slider.value / 10);
+  var x2 = 490-155 + p * (c2_slider.value / 10);
+  var x3 = 490-155 + p * (c3_slider.value / 10);
   output.innerHTML  += "c1_slider: " + c1_slider.value + " x1: " + x1 + "\n";
   output.innerHTML  += "c2_slider: " + c2_slider.value + " x2: " + x2 + "\n";
   output.innerHTML  += "c3_slider: " + c3_slider.value + " x3: " + x3 + "\n";
