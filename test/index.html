@@ -22,12 +22,12 @@
 .lw { font-size: 60px; }</style>
 
 
-<title>HTML, CSS and JavaScript demo</title>
+<title>Parallax Demo</title>
 </head>
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Demo</p>
+<p class="lw">Parallax Demo 1.0.0</p>
   <img id="c1" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000a.png?raw=true" alt="c1" width="1" height="1">
   <img id="c2" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000b.png?raw=true" alt="c2" width="1" height="1">
   <img id="c3" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000c.png?raw=true" alt="c3" width="1" height="1">
@@ -62,10 +62,12 @@ function myCanvas(x1,x2,x3) {
 }
 
 function handleOrientation(event) {
+  var z = event.alpha; // In degree in the range [-180,180]
   var x = event.beta;  // In degree in the range [-180,180]
   var y = event.gamma; // In degree in the range [-90,90]
 
   
+  output.innerHTML  = "alpha: " + z + "\n";
   output.innerHTML  = "beta : " + x + "\n";
   output.innerHTML += "gamma: " + y + "\n";
 
@@ -74,9 +76,9 @@ function handleOrientation(event) {
   if (x >  90) { x =  90;}
   if (x < -90) { x = -90;}
 
-  var x1 = 250-155 + y*1.0;
-  var x2 = 250-155 + y*0.6;
-  var x3 = 250-155 + y*0.4;
+  var x1 = 250-155 + y*2.0;
+  var x2 = 250-155 + y*1.6;
+  var x3 = 250-155 + y*1.4;
   myCanvas(x1,x2,x3);
   
   // To make computation easier we shift the range of 
