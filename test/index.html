@@ -27,7 +27,7 @@
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Parallax Demo 1.0.5</p>
+<p class="lw">Parallax Demo 1.0.6</p>
   
 <div class="garden">
   <canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #000000;"></canvas>    
@@ -90,12 +90,12 @@ function handleOrientation(event) {
   if (x >  90) { x =  90;}
   if (x < -90) { x = -90;}
 
-  var x1 = 500-155 + y * (c1_slider / 10);
-  var x2 = 500-155 + y * (c2_slider / 10);
-  var x3 = 500-155 + y * (c3_slider / 10);
-  output.innerHTML  += "c1_slider: " + c1_slider + " x1: " + x1 + "\n";
-  output.innerHTML  += "c2_slider: " + c2_slider + " x2: " + x2 + "\n";
-  output.innerHTML  += "c3_slider: " + c3_slider + " x3: " + x3 + "\n";
+  var x1 = 500-155 + y * (c1_slider.value / 10);
+  var x2 = 500-155 + y * (c2_slider.value / 10);
+  var x3 = 500-155 + y * (c3_slider.value / 10);
+  output.innerHTML  += "c1_slider: " + c1_slider.value + " x1: " + x1 + "\n";
+  output.innerHTML  += "c2_slider: " + c2_slider.value + " x2: " + x2 + "\n";
+  output.innerHTML  += "c3_slider: " + c3_slider.value + " x3: " + x3 + "\n";
   
   myCanvas(x1,x2,x3);
   
