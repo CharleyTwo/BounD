@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">.garden {
+<head><style type="text/css">
+.garden {
   position: relative;
-  width : 200px;
+  width : 500px;
   height: 200px;
   border: 5px solid #CCC;
   border-radius: 10px;
@@ -26,11 +27,14 @@
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Hello Weaver!</p>
-
-
+<p class="lw">Demo</p>
+  <img id="c1" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000a.png?raw=true" alt="c1" width="1" height="1">
+  <img id="c2" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000b.png?raw=true" alt="c2" width="1" height="1">
+  <img id="c3" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000c.png?raw=true" alt="c3" width="1" height="1">
+  
 <div class="garden">
-  <div class="ball" style="top: 80px; left: 80px;"></div>
+  <canvas id="myCanvas" width="500" height="200" style="border:1px solid #000000;"></canvas>    
+  <div class="ball" style="top: 230px; left: 80px;"></div>
 </div>
 
 <pre class="output">beta : null
@@ -46,10 +50,22 @@ var output = document.querySelector('.output');
 var maxX = garden.clientWidth  - ball.clientWidth;
 var maxY = garden.clientHeight - ball.clientHeight;
 
+function myCanvas(x1,x2,x3) {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img1 = document.getElementById("c1");
+    var img2 = document.getElementById("c2");
+    var img3 = document.getElementById("c3");
+    ctx.drawImage(img1,x1,10);
+    ctx.drawImage(img2,x2,10);
+    ctx.drawImage(img3,x3,10);
+}
+
 function handleOrientation(event) {
   var x = event.beta;  // In degree in the range [-180,180]
   var y = event.gamma; // In degree in the range [-90,90]
 
+  
   output.innerHTML  = "beta : " + x + "\n";
   output.innerHTML += "gamma: " + y + "\n";
 
@@ -58,6 +74,11 @@ function handleOrientation(event) {
   if (x >  90) { x =  90;}
   if (x < -90) { x = -90;}
 
+  var x1 = 250-155 + x*1.0;
+  var x2 = 250-155 + x*0.6;
+  var x3 = 250-155 + x*0.4;
+  myCanvas(x1,x2,x3);
+  
   // To make computation easier we shift the range of 
   // x and y to [0,180]
   x += 90;
@@ -67,9 +88,12 @@ function handleOrientation(event) {
   // It center the positioning point to the center of the ball
   ball.style.top  = (maxX*x/180 - 10) + "px";
   ball.style.left = (maxY*y/180 - 10) + "px";
+  
+
 }
 
 window.addEventListener('deviceorientation', handleOrientation);
 
 
 // Write JavaScript here </script></body>
+  
