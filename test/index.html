@@ -27,7 +27,7 @@
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Parallax Demo 1.0.8</p>
+<p class="lw">Parallax Demo 1.0.9</p>
   
 <div class="garden">
   <canvas id="myCanvas" width="980" height="500" style="border:1px solid #000000;"></canvas>    
@@ -84,7 +84,7 @@ function handleOrientation(event) {
   if(z < 117 || z > 303) {
     p = y;
   } else {
-    p = x * 10;
+    p = -x * 5;
   }
   
   output.innerHTML  = "alpha: " + z + "\n";
