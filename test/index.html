@@ -27,16 +27,25 @@
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Parallax Demo 1.0.2</p>
-  <img id="c1" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000a.png?raw=true" alt="c1" width="1" height="1">
-  <img id="c2" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000b.png?raw=true" alt="c2" width="1" height="1">
-  <img id="c3" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000c.png?raw=true" alt="c3" width="1" height="1">
+<p class="lw">Parallax Demo 1.0.3</p>
   
 <div class="garden">
   <canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #000000;"></canvas>    
   <div class="ball" style="top: 230px; left: 80px;"></div>
 </div>
 
+<div id="slidecontainer">
+  <p>
+    <img id="c1" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000a.png?raw=true" alt="c1" width="50" height="25">
+    <input type="range" min="1" max="100" value="5" class="slider" id="c1_slider"></p>
+  <p>
+    <img id="c2" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000b.png?raw=true" alt="c2" width="50" height="25">
+    <input type="range" min="1" max="100" value="10" class="slider" id="c2_slider"></p>
+  <p>
+    <img id="c3" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000c.png?raw=true" alt="c3" width="50" height="25">
+    <input type="range" min="1" max="100" value="50" class="slider" id="c3_slider"></p>
+</div>
+  
 <pre class="output">alpha: null
 beta : null
 gamma: null
@@ -51,6 +60,10 @@ var output = document.querySelector('.output');
 var maxX = garden.clientWidth  - ball.clientWidth;
 var maxY = garden.clientHeight - ball.clientHeight;
 
+var c1_slider = document.getElementById("c1_slider");
+var c2_slider = document.getElementById("c2_slider");
+var c3_slider = document.getElementById("c3_slider");
+  
 function myCanvas(x1,x2,x3) {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
@@ -77,9 +90,9 @@ function handleOrientation(event) {
   if (x >  90) { x =  90;}
   if (x < -90) { x = -90;}
 
-  var x1 = 500-155 + y*0.5;
-  var x2 = 500-155 + y*1.0;
-  var x3 = 500-155 + y*5.0;
+  var x1 = 500-155 + (y * c1_slider) / 10;
+  var x2 = 500-155 + (y * c2_slider) / 10;
+  var x3 = 500-155 + (y * c3_slider) / 10;
   myCanvas(x1,x2,x3);
   
   // To make computation easier we shift the range of 
