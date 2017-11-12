@@ -3,8 +3,8 @@
 <head><style type="text/css">
 .garden {
   position: relative;
-  width : 1080px;
-  height: 1080px;
+  width : 1000px;
+  height: 1000px;
   border: 5px solid #CCC;
   border-radius: 10px;
 }
@@ -33,7 +33,7 @@
   <img id="c3" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000c.png?raw=true" alt="c3" width="1" height="1">
   
 <div class="garden">
-  <canvas id="myCanvas" width="1080" height="1080" style="border:1px solid #000000;"></canvas>    
+  <canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #000000;"></canvas>    
   <div class="ball" style="top: 230px; left: 80px;"></div>
 </div>
 
@@ -77,9 +77,9 @@ function handleOrientation(event) {
   if (x >  90) { x =  90;}
   if (x < -90) { x = -90;}
 
-  var x1 = 540-155 + y*5.0;
-  var x2 = 540-155 + y*1.0;
-  var x3 = 540-155 + y*0.5;
+  var x1 = 500-155 + y*0.5;
+  var x2 = 500-155 + y*1.0;
+  var x3 = 500-155 + y*5.0;
   myCanvas(x1,x2,x3);
   
   // To make computation easier we shift the range of 
