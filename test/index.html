@@ -3,22 +3,20 @@
 <head><style type="text/css">
 .garden {
   position: relative;
-  width : 980px;
-  height: 500px;
+  width : 800px;
+  height: 300px;
   border: 5px solid #CCC;
   border-radius: 10px;
 }
-
 .ball {
   position: absolute;
-  top   : 90px;
-  left  : 90px;
+  top   : 0px;
+  left  : 0px;
   width : 20px;
   height: 20px;
   background: green;
   border-radius: 100%;
 }
-
 .lw { font-size: 60px; }</style>
 
 
@@ -27,10 +25,10 @@
 <body>
 <!-- Start your code here -->
 
-<p class="lw">Parallax Demo 1.0.10</p>
+<p class="lw">Parallax Demo 1.0.11</p>
   
 <div class="garden">
-  <canvas id="myCanvas" width="980" height="500" style="border:1px solid #000000;"></canvas>    
+  <canvas id="myCanvas" width="800" height="300" style="border:1px solid #000000;"></canvas>    
   <div class="ball" style="top: 230px; left: 80px;"></div>
 </div>
 
@@ -39,15 +37,15 @@
     <input type="range" min="-90" max="90" value="0" class="slider" id="view_slider"></p> View
   <p>
     <input type="range" min="1" max="100" value="5" class="slider" id="c1_slider"> Background
-    <!img id="c1" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000a.png?raw=true" alt="c1" width="50" height="25">
+    <img id="c1" src="cell000a.png" alt="cell000a.png" width="50" height="25">
   </p>
   <p>
     <input type="range" min="1" max="100" value="10" class="slider" id="c2_slider"> Middle
-    <!img id="c2" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000b.png?raw=true" alt="c2" width="50" height="25">
+    <img id="c2" src="cell000b.png" alt="cell000b.png" width="50" height="25">
   </p>
   <p>
     <input type="range" min="1" max="100" value="50" class="slider" id="c3_slider"> Foreground
-    <!img id="c3" src="https://github.com/CharleyTwo/BounD/blob/master/test/cell000c.png?raw=true" alt="c3" width="50" height="25">
+    <img id="c3" src="cell000c.png" alt="cell000c.png" width="50" height="25">
   </p>
 </div>
   
@@ -61,10 +59,8 @@ gamma: null
 <script>var ball   = document.querySelector('.ball');
 var garden = document.querySelector('.garden');
 var output = document.querySelector('.output');
-
 var maxX = garden.clientWidth  - ball.clientWidth;
 var maxY = garden.clientHeight - ball.clientHeight;
-
 var view_slider = document.getElementById("view_slider");
 var c1_slider = document.getElementById("c1_slider");
 var c2_slider = document.getElementById("c2_slider");
@@ -82,18 +78,33 @@ view_slider.oninput = function() {
 function myCanvas(x1,x2,x3) {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
+
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    // Use this code for images
     //var img1 = document.getElementById("c1");
     //var img2 = document.getElementById("c2");
     //var img3 = document.getElementById("c3");
-    ctx.clearRect(0, 0, c.width, c.height);
     //ctx.drawImage(img1,x1,10);
     //ctx.drawImage(img2,x2,10);
     //ctx.drawImage(img3,x3,10);
-    ctx.fillRect(x1,0,150,75);
-    ctx.fillRect(x2,0,150,75);
-    ctx.fillRect(x3,0,150,75);
-}
 
+    // Use this for easy to draw blocks 
+    ctx.font = "20px Arial";
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(x1-300,55,600,20);
+    ctx.strokeText("Background",x1,150);
+    ctx.fillStyle = "#00FF00";
+    ctx.fillRect(x2-250,20,30,55);
+    ctx.fillRect(x2-100,20,30,55);
+    ctx.fillRect(x2-0,  20,30,55);
+    ctx.fillRect(x2+100,20,30,55);
+    ctx.fillRect(x2+150,20,30,55);
+    ctx.strokeText("Middleground",x2,120);
+    ctx.fillStyle = "#0000FF";
+    ctx.fillRect(x3-25,0,50,75);
+    ctx.strokeText("Foreground",x3,90);
+}
 function handleOrientation(event) {
   var z = event.alpha; // In degree in the range [-180,180]
   var x = event.beta;  // In degree in the range [-180,180]
@@ -109,12 +120,10 @@ function handleOrientation(event) {
   output.innerHTML  = "alpha: " + z + "\n";
   output.innerHTML += "beta : " + x + "\n";
   output.innerHTML += "gamma: " + y + "\n";
-
   // Because we don't want to have the device upside down
   // We constrain the x value to the range [-90,90]
   if (x >  90) { x =  90;}
   if (x < -90) { x = -90;}
-
   var x1 = 490-155 + p * (c1_slider.value / 10);
   var x2 = 490-155 + p * (c2_slider.value / 10);
   var x3 = 490-155 + p * (c3_slider.value / 10);
@@ -128,13 +137,10 @@ function handleOrientation(event) {
   // x and y to [0,180]
   x += 90;
   y += 90;
-
   // 10 is half the size of the ball
   // It center the positioning point to the center of the ball
   ball.style.top  = (maxX*x/180 - 10) + "px";
   ball.style.left = (maxY*y/180 - 10) + "px";
 }
-
 window.addEventListener('deviceorientation', handleOrientation);
-
 </script></body>
