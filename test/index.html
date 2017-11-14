@@ -111,20 +111,19 @@ function handleOrientation(event) {
   var y = event.gamma; // In degree in the range [-90,90]
   var p = 0;
   
-  if(z < 117 || z > 303) {
+  if(window.innerHeight > window.innerWidth) {
     p = y;
   } else {
-    p = -x * 1;
+    p = -x * 6;
   }
-  p=y;
   
   output.innerHTML  = "alpha: " + z + "\n";
   output.innerHTML += "beta : " + x + "\n";
   output.innerHTML += "gamma: " + y + "\n";
   // Because we don't want to have the device upside down
   // We constrain the x value to the range [-90,90]
-  if (x >  90) { x =  90;}
-  if (x < -90) { x = -90;}
+  if (p >  70) { x =  70;}
+  if (p < -60) { x = -60;}
   var x1 = 490-155 + p * (c1_slider.value / 10);
   var x2 = 490-155 + p * (c2_slider.value / 10);
   var x3 = 490-155 + p * (c3_slider.value / 10);
